@@ -8,7 +8,7 @@ FROM frolvlad/alpine-glibc:latest
 
 ENV PATH /usr/local/texlive/2019/bin/x86_64-linuxmusl:$PATH
 
-RUN apk add --no-cache curl perl fontconfig-dev freetype-dev && \
+RUN apk add --no-cache curl perl fontconfig-dev freetype-dev python3  && \
     apk add --no-cache --virtual .fetch-deps xz tar && \
     mkdir /tmp/install-tl-unx && \
     curl -L http://ftp.jaist.ac.jp/pub/CTAN/systems/texlive/tlnet/install-tl-unx.tar.gz | \
