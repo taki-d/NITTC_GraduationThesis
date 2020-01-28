@@ -1,0 +1,23 @@
+\documentclass[10pt,a4paper]{jsarticle}
+
+\input{preamble}
+
+\begin{document}
+\linesparpage{36} %行数指定
+
+\begin{flushleft} %左寄せ
+\begin{thebibliography}{9} %参考文献一覧　参考文献の個数が1桁なら9，2桁なら99...といった感じで
+\addcontentsline{toc}{section}{参考文献}
+
+\bibitem{hoge} %hogeは参考文献の参照キーで \cite{hoge} と使う
+fuga %参考文献の説明
+
+\bibitem{irasutoya}
+いらすとや，原子のイラスト，
+\\ %改行
+http://www.irasutoya.com/2017/02/blog-post\_20.html %_（アンダースコア）など一部の文字は\などでエスケースさせる必要あり
+
+\end{thebibliography}
+\end{flushleft}
+
+\end{document}

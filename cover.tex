@@ -1,0 +1,40 @@
+\makeatletter
+
+%表紙作成マクロ
+\def\id#1{\def\@id{#1}}
+\def\department#1{\def\@department{#1}}
+\def\thesis#1{\def\@thesis{#1}}
+\def\university#1{\def\@university{#1}}
+\def\supervisor#1{\def\@supervisor{#1}}
+
+\def\@maketitle{
+    \begin{center}
+    \begin{spacing}{1.5}
+    \vspace*{4zh}
+    {\LARGE \@university \quad \@department \par}
+
+    {\LARGE \@thesis \par}
+    \vspace{25zh}
+    {\HUGE \bf \@id \quad \@author \par} 
+    \vspace{8zh}
+    {\LARGE ( \@date \quad 受理 ) \par}
+    \vspace{8zh}
+    {\LARGE 指導教官\quad \@supervisor \quad 印 \par}
+    \vspace{-45zh}
+    \begin{spacing}{0.1}
+    {\HUGE \bf \gtfamily \@title \par}
+	 \end{spacing}
+    \end{spacing}
+    \end{center}
+}
+
+\makeatother
+
+\title{HOGEに関するFUGAの研究} %タイトル
+\thesis{令和00年度　卒業研究論文} %年度
+\date{20XX.00.00} %日付
+\id{00000} %学籍番号
+\author{author} %氏名
+\university{東京工業高等専門学校} %学校名
+\department{電子工学科} %学科名
+\supervisor{supervisor} %教員名

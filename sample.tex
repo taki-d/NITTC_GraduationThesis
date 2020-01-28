@@ -3,112 +3,12 @@
 %目次や図・参考文献の参照（\figuref や \cite）を利用する場合は2回コンパイルしないと正しいPDFが生成されない（そういう仕様）
 \documentclass[10pt,a4paper]{jsarticle}
 
-%パッケージの使用宣言（includeやimportみないなもの）
-\usepackage[top=35truemm,bottom=30truemm,left=30truemm,right=30truemm]{geometry}
-\usepackage{fancyhdr}
-\usepackage{setspace}
-\usepackage{titlesec}
-\usepackage[dvipdfmx]{graphicx}
-\usepackage[format=hang]{caption}
-\usepackage{listings, jlisting}
+\input{preamble}
 
-%見出し表示調整
-\titleformat{\section}[hang]{\huge \gtfamily}{\Huge \gtfamily \thesection}{1zh}{\Huge}[{\titlerule[2pt]}]
-\titleformat{\subsection}[hang]{\Large \gtfamily}{\Large \gtfamily \thesubsection}{1zh}{\Large}[]
+\usepackage{docmute}
 
-%キャプションの表示指定
-\captionsetup[figure]{format=plain, labelformat=simple, labelsep=quad, font=large}
-\captionsetup[table]{format=plain, labelformat=simple, labelsep=quad, font=large}
-\captionsetup[lstlisting]{format=plain, labelformat=simple, labelsep=quad, font=large}
-
-%tocloftパッケージを使用すると「第n章」とタイトルの「hogehoge」か被るので注意
-\renewcommand{\presectionname}{第}
-\renewcommand{\postsectionname}{章}
-
-\makeatletter
-
-%表紙作成マクロ
-\def\id#1{\def\@id{#1}}
-\def\department#1{\def\@department{#1}}
-\def\thesis#1{\def\@thesis{#1}}
-\def\university#1{\def\@university{#1}}
-\def\supervisor#1{\def\@supervisor{#1}}
-
-\def\@maketitle{
-    \begin{center}
-    \begin{spacing}{1.5}
-    \vspace*{4zh}
-    {\LARGE \@university \quad \@department \par}
-
-    {\LARGE \@thesis \par}
-    \vspace{25zh}
-    {\HUGE \bf \@id \quad \@author \par} 
-    \vspace{8zh}
-    {\LARGE ( \@date \quad 受理 ) \par}
-    \vspace{8zh}
-    {\LARGE 指導教官\quad \@supervisor \quad 印 \par}
-    \vspace{-45zh}
-    \begin{spacing}{0.1}
-    {\HUGE \bf \gtfamily \@title \par}
-	 \end{spacing}
-    \end{spacing}
-    \end{center}
-}
-
-%行数指定マクロ
-\def\linesparpage#1{
-    \baselineskip=\textheight
-    \divide\baselineskip by #1
-}
-
-%refコマンドだけでは「図n hogehoge」と表示してくれないので
-%\figref{label}
-\newcommand{\figref}[1]{図\ref{#1}}
-\newcommand{\tabref}[1]{表\ref{#1}}
-
-\renewcommand{\figurename}{図}
-\renewcommand{\tablename}{表}
-
-%図表示用マクロ
-%\fig{source path}{caption}{label}
-\newcommand{\fig}[4][width=\textwidth]{
-    \begin{figure}[!h]
-    \begin{center}
-    \includegraphics[#1]{#2}
-    \caption{#3}
-    \label{#4}
-    \end{center}
-    \end{figure}
-}
-
-%リスト表示用設定
-\renewcommand{\lstlistingname}{リスト}
-\newcommand{\lstref}[1]{リスト\ref{#1}}
-\lstset{
-    %language=, （言語を指定しない場合（対応していない言語を含む））
-    language=C, %例：C言語を指定
-    basicstyle=\normalsize,
-    commentstyle=\textit,
-    classoffset=1,
-    keywordstyle=\bfseries,
-    frame=tRBl,
-    framesep=5pt,
-    showstringspaces=false,
-    numbers=left,
-    stepnumber=1,
-    numberstyle=\large
-}
-
-\makeatother
-
-\title{HOGEに関するFUGAの研究} %タイトル
-\thesis{令和00年度　卒業研究論文} %年度
-\date{20XX.00.00} %日付
-\id{00000} %学籍番号
-\author{author} %氏名
-\university{東京工業高等専門学校} %学校名
-\department{電子工学科} %学科名
-\supervisor{supervisor} %教員名
+% 表紙関係の設定
+\input{cover}
 
 \begin{document}
 \linesparpage{36} %行数指定
@@ -128,45 +28,20 @@
 \setcounter{page}{1}
 \pagestyle{plain}
 
-\section{はじめに}
+%序論
+\input{introduction}
 
-\subsection{研究の背景}
-hoge\cite{hoge}
+%ファイル分割したときのひな型になるセクション
+%これをコピーして好きな章を作りましょう．
+\input{sample_section}
 
-\subsection{いろいろ}
-fuga
+%まとめ
+\input{summary}
 
-\fig{image/atom.jpg}{原子}{atom}
+%謝辞
+\input{acknowledgements}
 
-\figref{atom}は原子です\cite{irasutoya}．
-
-\section{いろいろ}
-
-\subsection{いろいろ}
-hoge
-\lstinputlisting[caption=Hello Wordのソースコード,label=helloworld]{src/hello_world.c}
-\lstref{helloworld}はCのソースコードです．
-
-\section{まとめ}
-hoge
-
-\section*{謝辞} %章番号を振らないセクションの作成
-\addcontentsline{toc}{section}{謝辞} %章番号がないセクションを目次に表示させる
-hoge
-
-\begin{flushleft} %左寄せ
-\begin{thebibliography}{9} %参考文献一覧　参考文献の個数が1桁なら9，2桁なら99...といった感じで
-\addcontentsline{toc}{section}{参考文献}
-
-\bibitem{hoge} %hogeは参考文献の参照キーで \cite{hoge} と使う
-fuga %参考文献の説明
-
-\bibitem{irasutoya}
-いらすとや，原子のイラスト，
-\\ %改行
-http://www.irasutoya.com/2017/02/blog-post\_20.html %_（アンダースコア）など一部の文字は\などでエスケースさせる必要あり
-
-\end{thebibliography}
-\end{flushleft}
+%参考文献
+\input{reference}
 
 \end{document}
