@@ -18,7 +18,7 @@ RUN apk add --no-cache curl perl fontconfig-dev freetype-dev && \
       "tlpdbopt_install_docfiles 0" \
       "tlpdbopt_install_srcfiles 0" \
       > /tmp/install-tl-unx/texlive.profile && \
-    /tmp/install-tl-unx/install-tl \
+    /tmp/install-tl-unx/install-tl -repository http://ftp.jaist.ac.jp/pub/CTAN/systems/texlive/tlnet/ \
       --profile=/tmp/install-tl-unx/texlive.profile && \
     tlmgr install \
       collection-latexextra \
