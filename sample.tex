@@ -62,8 +62,8 @@
 }
 
 %refコマンドだけでは「図n hogehoge」と表示してくれないので
-%\figuref{label}
-\newcommand{\figuref}[1]{図\ref{#1}}
+%\figref{label}
+\newcommand{\figref}[1]{図\ref{#1}}
 \newcommand{\tabref}[1]{表\ref{#1}}
 
 \renewcommand{\figurename}{図}
@@ -138,7 +138,7 @@ fuga
 
 \fig{image/atom.jpg}{原子}{atom}
 
-\figuref{atom}は原子です\cite{irasutoya}．
+\figref{atom}は原子です\cite{irasutoya}．
 
 \section{いろいろ}
 
