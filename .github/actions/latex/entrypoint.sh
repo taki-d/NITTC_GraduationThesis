@@ -1,5 +1,4 @@
-#!/bin/bash
-set -eux
+#!/bin/sh
 
 # build pdf (change if necessary)
 latexmk master.tex
