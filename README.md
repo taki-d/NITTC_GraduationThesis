@@ -10,6 +10,19 @@
 ```
 $ cp sample.tex master.tex
 ```
+## 表紙の編集
+cover.texの後ろの方にこんなところがあります．
+ここの変数を適当に書き換えてあげれば表紙がいい感じになります．
+```
+\title{HOGEに関するFUGAの研究} %タイトル
+\thesis{令和00年度　卒業研究論文} %年度
+\date{20XX.00.00} %日付
+\id{00000} %学籍番号
+\author{author} %氏名
+\university{東京工業高等専門学校} %学校名
+\department{電子工学科} %学科名
+\supervisor{supervisor} %教員名
+```
 ## 章の追加
 章を追加するときは，ますsample_section.texを適当な名前でコピーします
 ```
