@@ -5,11 +5,6 @@
 プリアンブルを書きたくなったらpreamble.texに追記すれば，すべての章に適用されます．
 
 # 使い方
-## 最初の一歩
-適当にsample.texをコピーして編集しましょう．
-```
-$ cp sample.tex master.tex
-```
 ## 表紙の編集
 cover.texの後ろの方にこんなところがあります．
 ここの変数を適当に書き換えてあげれば表紙がいい感じになります．
@@ -33,6 +28,10 @@ $ cp sample_section.tex another_section.tex
 \input{another_section.tex}
 ```
 と書きましょう，
+
+## CI
+適当に執筆した後masterにpushするとそれをトリガにコンパイルが走ります.
+releaseに適宜追加されるので"あのバージョンの卒論が欲しい"が実現できます．
 
 # 最後に
 卒論執筆は計画的に(?)
