@@ -7,9 +7,9 @@ latexmk master.tex
 res=`curl -H "Authorization: token $GITHUB_TOKEN" -X POST https://api.github.com/repos/$GITHUB_REPOSITORY/releases \
 -d "
 {
-  \"tag_name\": \"${GITHUB_SHA}\",
+  \"tag_name\": \"$(echo ${GITHUB_SHA:10})\",
   \"target_commitish\": \"$GITHUB_SHA\",
-  \"name\": \"master.pdf ${GITHUB_SHA}\",
+  \"name\": \"master.pdf $(echo ${GITHUB_SHA:10})\",
   \"draft\": false,
   \"prerelease\": false
 }"`
